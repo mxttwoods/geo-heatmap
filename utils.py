@@ -1,10 +1,12 @@
-from datetime import datetime
 import webbrowser
-
+from datetime import datetime
 
 TEXT_BASED_BROWSERS = [webbrowser.GenericBrowser, webbrowser.Elinks]
 
-def isTextBasedBrowser(browser):
+TIME_STAMP = "%Y-%m-%d"
+
+
+def is_text_based_browser(browser):
     """Returns if browser is a text-based browser.
 
     Arguments:
@@ -20,7 +22,8 @@ def isTextBasedBrowser(browser):
     return False
 
 
-def timestampInRange(timestamp, date_range):
+def timestamp_in_range(timestamp, date_range):
+    global TIME_STAMP
     """Returns if the timestamp is in the date range.
 
     Arguments:
@@ -28,15 +31,15 @@ def timestampInRange(timestamp, date_range):
         date_range {tuple} -- A tuple of strings representing the date range.
         (min_date, max_date) (Date format: yyyy-mm-dd)
     """
+    date_str = datetime.fromtimestamp(int(timestamp) / 1000).strftime(TIME_STAMP)
     if date_range == (None, None):
         return True
-    date_str = datetime.fromtimestamp(
-        int(timestamp) / 1000).strftime("%Y-%m-%d")
-
-    return dateInRange(date_str, date_range)
+    else:
+        return date_str
 
 
-def dateInRange(date, date_range):
+def date_in_range(date, date_range):
+    global TIME_STAMP
     """Returns if the date is in the date range.
 
     Arguments:
@@ -46,14 +49,15 @@ def dateInRange(date, date_range):
     """
     if date_range == (None, None):
         return True
-    if date_range[0] == None:
+    if date_range[0] is None:
         min_date = None
     else:
-        min_date = datetime.strptime(date_range[0], "%Y-%m-%d")
-    if date_range[1] == None:
+        min_date = datetime.strptime(date_range[0], TIME_STAMP)
+    if date_range[1] is None:
         max_date = None
     else:
-        max_date = datetime.strptime(date_range[1], "%Y-%m-%d")
-    date = datetime.strptime(date, "%Y-%m-%d")
-    return (min_date is None or min_date <= date) and \
-        (max_date is None or max_date >= date)
+        max_date = datetime.strptime(date_range[1], TIME_STAMP)
+    date = datetime.strptime(date, TIME_STAMP)
+    return (min_date is None or min_date <= date) and (
+        max_date is None or max_date >= date
+    )

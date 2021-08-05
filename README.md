@@ -15,7 +15,7 @@ If you don't already have Python 3+ installed, grab it from <https://www.python.
 Here you can find out how to download your Google data: <https://support.google.com/accounts/answer/3024190?hl=en></br>
 Here you can download all of the data that Google has stored on you: <https://takeout.google.com/>
 
-To use this script, you only need to select and download your "Location History", which Google will provide to you as a JSON file by default.  KML is also an output option and is accepted for this program.
+To use this script, you only need to select and download your "Location History", which Google will provide to you as a JSON file by default. KML is also an output option and is accepted for this program.
 
 You can also import [GPS Exchange Format (GPX)](https://en.wikipedia.org/wiki/GPS_Exchange_Format) files,
 e.g. from a GPS tracker.
@@ -28,7 +28,7 @@ On <https://github.com/luka1199/geo-heatmap>, click the green "Clone or Download
 
 In a [command prompt or Terminal window](https://tutorial.djangogirls.org/en/intro_to_command_line/#what-is-the-command-line), [navigate to the directory](https://tutorial.djangogirls.org/en/intro_to_command_line/#change-current-directory) containing this repository's files. Then, type the following, and press enter:
 
-```shell
+```bash
 pip install -r requirements.txt
 ```
 
@@ -36,7 +36,7 @@ pip install -r requirements.txt
 
 In the same command prompt or Terminal window, type the following, and press enter:
 
-```shell
+```bash
 python geo_heatmap.py <file> [<file> ...]
 ```
 
@@ -47,49 +47,49 @@ Replace the string `<file>` from above with the path to any of the following fil
 - The `takeout-*.zip` raw download from Google Takeout that contains either of the above files
 - A [GPS Exchange Format (GPX)](https://en.wikipedia.org/wiki/GPS_Exchange_Format) file
 
-#### Examples:
+#### Examples
 
 Single file:
 
-```shell
+```bash
 python geo_heatmap.py C:\Users\Testuser\Desktop\locations.json
 ```
 
-```shell
+```bash
 python geo_heatmap.py "C:\Users\Testuser\Desktop\Location History.json"
 ```
 
-```shell
+```bash
 python geo_heatmap.py locations.json
 ```
 
 Multiple files:
 
-```shell
+```bash
 python geo_heatmap.py locations.json locations.kml takeout.zip
 ```
 
 Using the stream option (for users with Memory Errors):
 
-```shell
+```bash
 python geo_heatmap.py -s locations.json
 ```
 
 Set a date range:
 
-```shell
+```bash
 python geo_heatmap.py --min-date 2017-01-02 --max-date 2018-12-30 locations.json
 ```
 
 Advanced heatmap settings:
 
-```shell
+```bash
 python geo_heatmap.py -z 15 -r 12 -b 7 -mo 0.3 -mz 20 locations.json
 ```
 
-#### Usage:
+#### Usage
 
-```
+```console
 usage: geo_heatmap.py [-h] [-o OUTPUT] [--min-date YYYY-MM-DD]
                       [--max-date YYYY-MM-DD] [-s] [--map MAP] [-z ZOOM_START]
                       [-r RADIUS] [-b BLUR] [-mo MIN_OPACITY] [-mz MAX_ZOOM]
@@ -146,7 +146,7 @@ To fix this, download and install the 64-bit version of Python. To do this:
 
 If this does not fix the issue you can use the stream option:
 
-```shell
+```bash
 python geo_heatmap.py -s <file>
 ```
 
@@ -160,7 +160,7 @@ You are probably using the python interpreter to run these commands. Try to run 
 
 Try to run:
 
-```shell
+```bash
 pip uninstall progressbar
 pip install progressbar2
 ```
